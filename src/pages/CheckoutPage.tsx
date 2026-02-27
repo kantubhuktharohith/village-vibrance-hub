@@ -37,22 +37,22 @@ const CheckoutPage = () => {
           <div className="space-y-3">
             <div className="flex justify-between text-sm">
               <span>Base price (1 person)</span>
-              <span className="font-medium">${experience.price}</span>
+              <span className="font-medium">₹{experience.price}</span>
             </div>
             <div className="flex justify-between text-sm">
               <span>Platform fee</span>
-              <span className="font-medium">${platformFee}</span>
+              <span className="font-medium">₹{platformFee}</span>
             </div>
             <div className="flex justify-between text-sm">
               <div className="flex items-center gap-1.5">
                 <span className="text-trust font-semibold">Village Development Fund</span>
                 <ShieldCheck className="w-3.5 h-3.5 text-trust" />
               </div>
-              <span className="font-semibold text-trust">${fundContribution}</span>
+              <span className="font-semibold text-trust">₹{fundContribution}</span>
             </div>
             <div className="border-t pt-3 flex justify-between">
               <span className="font-semibold">Total</span>
-              <span className="text-xl font-bold">${total}</span>
+              <span className="text-xl font-bold">₹{total}</span>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@ const CheckoutPage = () => {
         {/* Fund highlight */}
         <div className="p-4 rounded-2xl bg-trust/5 border border-trust/15 mb-6">
           <p className="text-sm text-muted-foreground">
-            <span className="font-semibold text-trust">${fundContribution}</span> goes directly to the village development fund. 100% transparent allocation.
+            <span className="font-semibold text-trust">₹{fundContribution}</span> goes directly to the village development fund. 100% transparent allocation.
           </p>
         </div>
 
@@ -87,7 +87,7 @@ const CheckoutPage = () => {
           }`}
         >
           <Lock className="w-4 h-4" />
-          Pay Securely — ${total}
+          Pay Securely — ₹{total}
         </button>
       </motion.div>
     </div>

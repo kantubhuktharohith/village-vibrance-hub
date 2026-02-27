@@ -28,7 +28,7 @@ const VillageCard = ({ village }: VillageCardProps) => {
           </div>
         )}
         <div className="absolute bottom-3 right-3 bg-background/90 backdrop-blur-sm rounded-lg px-2.5 py-1 text-sm font-semibold">
-          From ${village.startingPrice}
+          From ₹{village.startingPrice}
         </div>
       </div>
       <div className="p-4">

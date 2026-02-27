@@ -37,7 +37,7 @@ const ExperienceDetailPage = () => {
               <Clock className="w-4 h-4" />
               {experience.duration}
             </div>
-            <span className="text-lg font-bold">${experience.price}<span className="text-sm font-normal text-muted-foreground">/person</span></span>
+            <span className="text-lg font-bold">₹{experience.price}<span className="text-sm font-normal text-muted-foreground">/person</span></span>
           </div>
 
           <section className="mt-6">
