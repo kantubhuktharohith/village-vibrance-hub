@@ -76,7 +76,7 @@ const VillageProfilePage = () => {
                   <h3 className="font-semibold">{exp.title}</h3>
                   <div className="flex items-center gap-3 mt-2 text-sm text-muted-foreground">
                     <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{exp.duration}</span>
-                    <span className="font-semibold text-foreground">${exp.price}/person</span>
+                    <span className="font-semibold text-foreground">₹{exp.price}/person</span>
                   </div>
                 </div>
               </button>
@@ -97,7 +97,7 @@ const VillageProfilePage = () => {
               />
             </div>
             <div className="flex justify-between mt-2 text-xs text-muted-foreground">
-              <span>${village.fundContribution} raised</span>
+              <span>₹{village.fundContribution} raised</span>
               <span>{village.fundProgress}% complete</span>
             </div>
           </section>
@@ -110,7 +110,7 @@ const VillageProfilePage = () => {
           onClick={() => navigate(`/experience/${village.experiences[0]?.id}`)}
           className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
         >
-          Book Experience — From ${village.startingPrice}
+          Book Experience — From ₹{village.startingPrice}
         </button>
       </div>
     </div>

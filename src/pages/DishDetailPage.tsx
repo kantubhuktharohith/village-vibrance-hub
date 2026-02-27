@@ -62,7 +62,7 @@ const DishDetailPage = () => {
             <p className="text-sm text-muted-foreground mb-3">
               Learn to make this dish with a village grandmother. Hands-on experience with local techniques.
             </p>
-            <p className="text-lg font-bold">${dish.cookingClassPrice}<span className="text-sm font-normal text-muted-foreground">/person</span></p>
+            <p className="text-lg font-bold">₹{dish.cookingClassPrice}<span className="text-sm font-normal text-muted-foreground">/person</span></p>
           </section>
         </motion.div>
       </div>
@@ -72,7 +72,7 @@ const DishDetailPage = () => {
           onClick={() => navigate(`/village/${dish.villageId}`)}
           className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
         >
-          Book Cooking Experience — ${dish.cookingClassPrice}
+          Book Cooking Experience — ₹{dish.cookingClassPrice}
         </button>
       </div>
     </div>

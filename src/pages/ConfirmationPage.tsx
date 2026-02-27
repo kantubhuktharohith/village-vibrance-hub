@@ -63,7 +63,7 @@ const ConfirmationPage = () => {
           className="w-full py-4 rounded-2xl bg-trust/10 text-trust font-semibold flex items-center justify-center gap-2 border border-trust/20 hover:bg-trust/15 transition-colors"
         >
           <Eye className="w-4 h-4" />
-          See Your Impact — ${fundContribution} contributed
+          See Your Impact — ₹{fundContribution} contributed
         </button>
 
         <button

@@ -31,7 +31,7 @@ const ImpactPage = () => {
             <TrendingUp className="w-7 h-7 text-trust" />
           </div>
           <h1 className="font-display text-2xl font-bold">Your Impact</h1>
-          <p className="text-4xl font-bold text-trust mt-2">${fundContribution}</p>
+          <p className="text-4xl font-bold text-trust mt-2">₹{fundContribution}</p>
           <p className="text-sm text-muted-foreground mt-1">contributed to Village Development Fund</p>
         </div>
 
@@ -50,7 +50,7 @@ const ImpactPage = () => {
             />
           </div>
           <div className="flex justify-between text-xs text-muted-foreground">
-            <span>${village.fundContribution} of $5,000 raised</span>
+            <span>₹{village.fundContribution} of ₹5,000 raised</span>
             <span>{village.fundProgress}%</span>
           </div>
         </div>
