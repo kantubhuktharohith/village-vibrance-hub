@@ -50,7 +50,7 @@ const ImpactPage = () => {
             />
           </div>
           <div className="flex justify-between text-xs text-muted-foreground">
-            <span>₹{village.fundContribution} of ₹5,000 raised</span>
+            <span>₹{village.fundContribution.toLocaleString('en-IN')} of ₹4,00,000 raised</span>
             <span>{village.fundProgress}%</span>
           </div>
         </div>
