@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { motion } from "framer-motion";
 import VillageCard from "@/components/VillageCard";
+import VillageMap from "@/components/VillageMap";
 import { villages } from "@/data/mockData";
 
 const ExplorePage = () => {
@@ -30,19 +31,7 @@ const ExplorePage = () => {
         </button>
       </div>
 
-      {/* Map placeholder */}
-      <div className="relative rounded-2xl overflow-hidden mb-5 h-48 bg-muted">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-sm font-semibold text-muted-foreground">🗺️ Interactive Map</p>
-            <p className="text-xs text-muted-foreground mt-1">Village locations coming soon</p>
-          </div>
-        </div>
-        {/* Trust indicator */}
-        <div className="absolute top-3 left-3 trust-badge-solid">
-          <span>All villages verified ✓</span>
-        </div>
-      </div>
+      <VillageMap />
 
       <h2 className="font-display text-xl font-bold mb-4">Discover Villages</h2>
 

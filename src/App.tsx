@@ -20,6 +20,11 @@ import DishDetailPage from "./pages/DishDetailPage";
 import BookingsPage from "./pages/BookingsPage";
 import ReviewPage from "./pages/ReviewPage";
 import ProfilePage from "./pages/ProfilePage";
+import PersonalInfoPage from "./pages/PersonalInfoPage";
+import TrustBadgePage from "./pages/TrustBadgePage";
+import PaymentMethodsPage from "./pages/PaymentMethodsPage";
+import SavedVillagesPage from "./pages/SavedVillagesPage";
+import SupportPage from "./pages/SupportPage";
 import AppLayout from "./components/AppLayout";
 
 const queryClient = new QueryClient();
@@ -50,6 +55,13 @@ const App = () => (
               <Route path="/experience/:id" element={<ExperienceDetailPage />} />
               <Route path="/dish/:id" element={<DishDetailPage />} />
             </Route>
+
+            {/* Profile sub-pages */}
+            <Route path="/profile/personal-info" element={<ProtectedRoute><PersonalInfoPage /></ProtectedRoute>} />
+            <Route path="/profile/trust-badge" element={<ProtectedRoute><TrustBadgePage /></ProtectedRoute>} />
+            <Route path="/profile/payment-methods" element={<ProtectedRoute><PaymentMethodsPage /></ProtectedRoute>} />
+            <Route path="/profile/saved-villages" element={<ProtectedRoute><SavedVillagesPage /></ProtectedRoute>} />
+            <Route path="/profile/support" element={<SupportPage />} />
 
             {/* Standalone pages */}
             <Route path="/checkout/:id" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />

@@ -3,11 +3,11 @@ import { User, ShieldCheck, CreditCard, Heart, HelpCircle, LogOut, ChevronRight 
 import { useAuth } from "@/contexts/AuthContext";
 
 const sections = [
-  { icon: User, label: "Personal Info", path: "#" },
-  { icon: ShieldCheck, label: "Trust Badge Status", path: "#", badge: "Verified" },
-  { icon: CreditCard, label: "Payment Methods", path: "#" },
-  { icon: Heart, label: "Saved Villages", path: "#" },
-  { icon: HelpCircle, label: "Support", path: "#" },
+  { icon: User, label: "Personal Info", path: "/profile/personal-info" },
+  { icon: ShieldCheck, label: "Trust Badge Status", path: "/profile/trust-badge", badge: "Pending" },
+  { icon: CreditCard, label: "Payment Methods", path: "/profile/payment-methods" },
+  { icon: Heart, label: "Saved Villages", path: "/profile/saved-villages" },
+  { icon: HelpCircle, label: "Support", path: "/profile/support" },
 ];
 
 const ProfilePage = () => {
@@ -47,6 +47,7 @@ const ProfilePage = () => {
         {sections.map((s) => (
           <button
             key={s.label}
+            onClick={() => navigate(s.path)}
             className="w-full flex items-center gap-3 p-4 rounded-xl text-left hover:bg-secondary transition-colors"
           >
             <s.icon className="w-5 h-5 text-muted-foreground" />
