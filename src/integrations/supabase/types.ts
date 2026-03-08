@@ -14,6 +14,156 @@ export type Database = {
   }
   public: {
     Tables: {
+      place_budget_info: {
+        Row: {
+          avg_activity_cost_per_day: number | null
+          avg_food_cost_per_day: number | null
+          avg_room_cost_per_night: number | null
+          avg_transport_cost_per_day: number | null
+          currency: string | null
+          id: string
+          place_id: string
+          updated_at: string
+        }
+        Insert: {
+          avg_activity_cost_per_day?: number | null
+          avg_food_cost_per_day?: number | null
+          avg_room_cost_per_night?: number | null
+          avg_transport_cost_per_day?: number | null
+          currency?: string | null
+          id?: string
+          place_id: string
+          updated_at?: string
+        }
+        Update: {
+          avg_activity_cost_per_day?: number | null
+          avg_food_cost_per_day?: number | null
+          avg_room_cost_per_night?: number | null
+          avg_transport_cost_per_day?: number | null
+          currency?: string | null
+          id?: string
+          place_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "place_budget_info_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: true
+            referencedRelation: "tourist_places"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      place_foods: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          cuisine_type: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          is_vegetarian: boolean | null
+          name: string
+          place_id: string
+          price_range: string | null
+          rating: number | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          cuisine_type?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_vegetarian?: boolean | null
+          name: string
+          place_id: string
+          price_range?: string | null
+          rating?: number | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          cuisine_type?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_vegetarian?: boolean | null
+          name?: string
+          place_id?: string
+          price_range?: string | null
+          rating?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "place_foods_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "tourist_places"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      place_rooms: {
+        Row: {
+          amenities: string[] | null
+          available: boolean | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          max_guests: number | null
+          name: string
+          place_id: string
+          price_per_night: number
+          rating: number | null
+          room_type: string | null
+          total_reviews: number | null
+        }
+        Insert: {
+          amenities?: string[] | null
+          available?: boolean | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          max_guests?: number | null
+          name: string
+          place_id: string
+          price_per_night?: number
+          rating?: number | null
+          room_type?: string | null
+          total_reviews?: number | null
+        }
+        Update: {
+          amenities?: string[] | null
+          available?: boolean | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          max_guests?: number | null
+          name?: string
+          place_id?: string
+          price_per_night?: number
+          rating?: number | null
+          room_type?: string | null
+          total_reviews?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "place_rooms_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "tourist_places"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -127,7 +277,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "user"
+      app_role: "admin" | "user" | "partner"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -255,7 +405,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "user"],
+      app_role: ["admin", "user", "partner"],
     },
   },
 } as const
