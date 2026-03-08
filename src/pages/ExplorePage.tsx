@@ -1,17 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { motion } from "framer-motion";
 import VillageCard from "@/components/VillageCard";
+import TouristPlaceCard from "@/components/TouristPlaceCard";
 import VillageMap from "@/components/VillageMap";
 import { villages } from "@/data/mockData";
+import { supabase } from "@/integrations/supabase/client";
+
+interface TouristPlace {
+  id: string;
+  name: string;
+  region: string;
+  image_url: string | null;
+  starting_price: number;
+  verified: boolean;
+}
 
 const ExplorePage = () => {
   const [search, setSearch] = useState("");
+  const [dbPlaces, setDbPlaces] = useState<TouristPlace[]>([]);
 
-  const filtered = villages.filter(
+  useEffect(() => {
+    const fetchPlaces = async () => {
+      const { data } = await supabase
+        .from("tourist_places")
+        .select("id, name, region, image_url, starting_price, verified")
+        .eq("verified", true)
+        .order("created_at", { ascending: false });
+      if (data) setDbPlaces(data as TouristPlace[]);
+    };
+    fetchPlaces();
+  }, []);
+
+  const filteredVillages = villages.filter(
     (v) =>
       v.name.toLowerCase().includes(search.toLowerCase()) ||
       v.region.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const filteredPlaces = dbPlaces.filter(
+    (p) =>
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.region.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -33,10 +63,29 @@ const ExplorePage = () => {
 
       <VillageMap />
 
+      {/* Verified Tourist Places from DB */}
+      {filteredPlaces.length > 0 && (
+        <>
+          <h2 className="font-display text-xl font-bold mb-4">Tourist Destinations</h2>
+          <div className="space-y-4 mb-8">
+            {filteredPlaces.map((place, i) => (
+              <motion.div
+                key={place.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <TouristPlaceCard place={place} />
+              </motion.div>
+            ))}
+          </div>
+        </>
+      )}
+
       <h2 className="font-display text-xl font-bold mb-4">Discover Villages</h2>
 
       <div className="space-y-4">
-        {filtered.map((village, i) => (
+        {filteredVillages.map((village, i) => (
           <motion.div
             key={village.id}
             initial={{ opacity: 0, y: 20 }}

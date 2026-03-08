@@ -29,6 +29,7 @@ import AdminPage from "./pages/AdminPage";
 import PlaceFoodsPage from "./pages/PlaceFoodsPage";
 import PlaceRoomsPage from "./pages/PlaceRoomsPage";
 import PlaceBudgetPage from "./pages/PlaceBudgetPage";
+import TouristPlaceDetailPage from "./pages/TouristPlaceDetailPage";
 import AppLayout from "./components/AppLayout";
 
 const queryClient = new QueryClient();
@@ -73,6 +74,7 @@ const App = () => (
             <Route path="/impact/:villageId" element={<ImpactPage />} />
             <Route path="/review" element={<ReviewPage />} />
             <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
+            <Route path="/place/:placeId" element={<TouristPlaceDetailPage />} />
             <Route path="/place/:placeId/foods" element={<PlaceFoodsPage />} />
             <Route path="/place/:placeId/rooms" element={<PlaceRoomsPage />} />
             <Route path="/place/:placeId/budget" element={<PlaceBudgetPage />} />
