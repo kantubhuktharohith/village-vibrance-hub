@@ -73,6 +73,9 @@ const App = () => (
             <Route path="/impact/:villageId" element={<ImpactPage />} />
             <Route path="/review" element={<ReviewPage />} />
             <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
+            <Route path="/place/:placeId/foods" element={<PlaceFoodsPage />} />
+            <Route path="/place/:placeId/rooms" element={<PlaceRoomsPage />} />
+            <Route path="/place/:placeId/budget" element={<PlaceBudgetPage />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
