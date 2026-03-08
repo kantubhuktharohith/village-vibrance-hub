@@ -82,20 +82,26 @@ const ExplorePage = () => {
         </>
       )}
 
-      <h2 className="font-display text-xl font-bold mb-4">Discover Villages</h2>
-
-      <div className="space-y-4">
-        {filteredVillages.map((village, i) => (
-          <motion.div
-            key={village.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-          >
-            <VillageCard village={village} />
-          </motion.div>
-        ))}
-      </div>
+      {/* Only show mock villages that don't overlap with DB places */}
+      {filteredVillages.length > 0 && (
+        <>
+          <h2 className="font-display text-xl font-bold mb-4">Discover Villages</h2>
+          <div className="space-y-4">
+            {filteredVillages
+              .filter((v) => !dbPlaces.some((p) => p.name.toLowerCase() === v.name.toLowerCase()))
+              .map((village, i) => (
+                <motion.div
+                  key={village.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <VillageCard village={village} />
+                </motion.div>
+              ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
