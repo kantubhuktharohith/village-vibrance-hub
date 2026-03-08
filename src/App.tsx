@@ -25,6 +25,7 @@ import TrustBadgePage from "./pages/TrustBadgePage";
 import PaymentMethodsPage from "./pages/PaymentMethodsPage";
 import SavedVillagesPage from "./pages/SavedVillagesPage";
 import SupportPage from "./pages/SupportPage";
+import AdminPage from "./pages/AdminPage";
 import AppLayout from "./components/AppLayout";
 
 const queryClient = new QueryClient();
@@ -68,6 +69,7 @@ const App = () => (
             <Route path="/confirmation/:id" element={<ConfirmationPage />} />
             <Route path="/impact/:villageId" element={<ImpactPage />} />
             <Route path="/review" element={<ReviewPage />} />
+            <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
