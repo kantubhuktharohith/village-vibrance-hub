@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Leaf, Star, UtensilsCrossed } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
+import ReviewSection from "@/components/ReviewSection";
 import { Badge } from "@/components/ui/badge";
 
 interface PlaceFood {
@@ -105,6 +106,13 @@ const PlaceFoodsPage = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Reviews for each food item */}
+          {foods.map((food) => (
+            <div key={`review-${food.id}`} className="mt-6">
+              <ReviewSection targetId={food.id} reviewType="food" title={`Reviews for ${food.name}`} />
+            </div>
+          ))}
         )}
       </div>
     </div>

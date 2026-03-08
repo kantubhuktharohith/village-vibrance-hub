@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Heart, MapPin, Star, UtensilsCrossed, BedDouble, Calculator, Check, ShieldCheck } from "lucide-react";
+import ReviewSection from "@/components/ReviewSection";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -165,6 +166,9 @@ const TouristPlaceDetailPage = () => {
               </div>
             </section>
           )}
+
+          {/* Reviews */}
+          <ReviewSection targetId={placeId!} reviewType="place" title="Visitor Reviews" />
         </motion.div>
       </div>
 

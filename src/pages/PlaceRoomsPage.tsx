@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, BedDouble, Star, Users, Wifi, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
+import ReviewSection from "@/components/ReviewSection";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -137,6 +138,13 @@ const PlaceRoomsPage = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Reviews for each room */}
+          {rooms.map((room) => (
+            <div key={`review-${room.id}`} className="mt-6">
+              <ReviewSection targetId={room.id} reviewType="room" title={`Reviews for ${room.name}`} />
+            </div>
+          ))}
         )}
       </div>
     </div>
