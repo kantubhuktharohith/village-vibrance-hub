@@ -47,7 +47,7 @@ const AdminFoodManager = ({ places, userId }: Props) => {
 
   const fetchFoods = async () => {
     const query = supabase.from("place_foods").select("*").order("created_at", { ascending: false });
-    const { data } = selectedPlace ? await query.eq("place_id", selectedPlace) : await query;
+    const { data } = selectedPlace && selectedPlace !== "all" ? await query.eq("place_id", selectedPlace) : await query;
     if (data) setFoods(data as FoodItem[]);
   };
 

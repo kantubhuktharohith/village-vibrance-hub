@@ -53,7 +53,7 @@ const AdminRoomManager = ({ places, userId }: Props) => {
 
   const fetchRooms = async () => {
     const query = supabase.from("place_rooms").select("*").order("created_at", { ascending: false });
-    const { data } = selectedPlace ? await query.eq("place_id", selectedPlace) : await query;
+    const { data } = selectedPlace && selectedPlace !== "all" ? await query.eq("place_id", selectedPlace) : await query;
     if (data) setRooms(data as RoomItem[]);
   };
 
