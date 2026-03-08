@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { User, ShieldCheck, CreditCard, Heart, HelpCircle, LogOut, ChevronRight } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const sections = [
   { icon: User, label: "Personal Info", path: "#" },
@@ -11,16 +12,30 @@ const sections = [
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/");
+  };
+
+  const displayName = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split("@")[0] || "Traveler";
+  const avatarUrl = user?.user_metadata?.avatar_url;
 
   return (
     <div className="px-5 py-4 pb-24">
       {/* Profile header */}
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-          <User className="w-7 h-7 text-primary" />
+        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+          {avatarUrl ? (
+            <img src={avatarUrl} alt={displayName} className="w-full h-full object-cover" />
+          ) : (
+            <User className="w-7 h-7 text-primary" />
+          )}
         </div>
         <div>
-          <h2 className="font-display text-xl font-bold">Traveler</h2>
+          <h2 className="font-display text-xl font-bold">{displayName}</h2>
+          <p className="text-xs text-muted-foreground">{user?.email}</p>
           <div className="trust-badge mt-1">
             <ShieldCheck className="w-3.5 h-3.5" />
             Trust Verified
@@ -43,7 +58,7 @@ const ProfilePage = () => {
       </div>
 
       <button
-        onClick={() => navigate("/")}
+        onClick={handleLogout}
         className="w-full flex items-center gap-3 p-4 rounded-xl mt-4 text-destructive hover:bg-destructive/5 transition-colors"
       >
         <LogOut className="w-5 h-5" />
