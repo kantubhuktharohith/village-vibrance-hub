@@ -18,6 +18,7 @@ interface TouristPlace {
 const VillageMap = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
+  const dbMarkersRef = useRef<L.Marker[]>([]);
   const navigate = useNavigate();
   const [dbPlaces, setDbPlaces] = useState<TouristPlace[]>([]);
 
@@ -32,6 +33,7 @@ const VillageMap = () => {
     fetchPlaces();
   }, []);
 
+  // Initialize map once
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
 
@@ -74,6 +76,7 @@ const VillageMap = () => {
       );
     }
 
+    // Mock villages
     const verifiedIcon = L.divIcon({
       className: "custom-marker",
       html: `<div style="
@@ -89,22 +92,6 @@ const VillageMap = () => {
       iconAnchor: [16, 16],
     });
 
-    const dbIcon = L.divIcon({
-      className: "custom-marker",
-      html: `<div style="
-        width: 32px; height: 32px;
-        background: hsl(25, 90%, 50%);
-        border: 3px solid white;
-        border-radius: 50%;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        display: flex; align-items: center; justify-content: center;
-        color: white; font-size: 14px; font-weight: bold;
-      ">★</div>`,
-      iconSize: [32, 32],
-      iconAnchor: [16, 16],
-    });
-
-    // Mock villages
     villages.forEach((v) => {
       const marker = L.marker([v.lat, v.lng], { icon: verifiedIcon }).addTo(map);
       marker.bindPopup(`
@@ -131,7 +118,38 @@ const VillageMap = () => {
       });
     });
 
-    // DB tourist places
+    mapInstance.current = map;
+
+    return () => {
+      map.remove();
+      mapInstance.current = null;
+    };
+  }, [navigate]);
+
+  // Add DB places as a separate effect so they update when data loads
+  useEffect(() => {
+    const map = mapInstance.current;
+    if (!map) return;
+
+    // Remove old DB markers
+    dbMarkersRef.current.forEach((m) => m.remove());
+    dbMarkersRef.current = [];
+
+    const dbIcon = L.divIcon({
+      className: "custom-marker",
+      html: `<div style="
+        width: 32px; height: 32px;
+        background: hsl(25, 90%, 50%);
+        border: 3px solid white;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-size: 14px; font-weight: bold;
+      ">★</div>`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+    });
+
     dbPlaces.forEach((p) => {
       if (p.lat === 0 && p.lng === 0) return;
       const marker = L.marker([p.lat, p.lng], { icon: dbIcon }).addTo(map);
@@ -153,15 +171,9 @@ const VillageMap = () => {
           popupEl.addEventListener("click", () => navigate(`/place/${p.id}`));
         }
       });
+      dbMarkersRef.current.push(marker);
     });
-
-    mapInstance.current = map;
-
-    return () => {
-      map.remove();
-      mapInstance.current = null;
-    };
-  }, [navigate, dbPlaces]);
+  }, [dbPlaces, navigate]);
 
   return (
     <div className="relative rounded-2xl overflow-hidden mb-5 h-56 border border-border">
