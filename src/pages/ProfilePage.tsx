@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { User, ShieldCheck, CreditCard, Heart, HelpCircle, LogOut, ChevronRight } from "lucide-react";
+import { User, ShieldCheck, CreditCard, Heart, HelpCircle, LogOut, ChevronRight, Settings } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useAdminCheck } from "@/hooks/useAdminCheck";
 
 const sections = [
   { icon: User, label: "Personal Info", path: "/profile/personal-info" },
@@ -13,6 +14,7 @@ const sections = [
 const ProfilePage = () => {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
+  const { isAdmin } = useAdminCheck();
 
   const handleLogout = async () => {
     await signOut();
@@ -57,6 +59,17 @@ const ProfilePage = () => {
           </button>
         ))}
       </div>
+
+      {isAdmin && (
+        <button
+          onClick={() => navigate("/admin")}
+          className="w-full flex items-center gap-3 p-4 rounded-xl mt-2 text-primary hover:bg-primary/5 transition-colors border border-primary/20"
+        >
+          <Settings className="w-5 h-5" />
+          <span className="font-medium text-sm">Admin Panel</span>
+          <ChevronRight className="w-4 h-4 ml-auto" />
+        </button>
+      )}
 
       <button
         onClick={handleLogout}
