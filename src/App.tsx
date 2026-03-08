@@ -26,6 +26,9 @@ import PaymentMethodsPage from "./pages/PaymentMethodsPage";
 import SavedVillagesPage from "./pages/SavedVillagesPage";
 import SupportPage from "./pages/SupportPage";
 import AdminPage from "./pages/AdminPage";
+import PlaceFoodsPage from "./pages/PlaceFoodsPage";
+import PlaceRoomsPage from "./pages/PlaceRoomsPage";
+import PlaceBudgetPage from "./pages/PlaceBudgetPage";
 import AppLayout from "./components/AppLayout";
 
 const queryClient = new QueryClient();
