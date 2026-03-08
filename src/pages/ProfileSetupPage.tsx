@@ -1,16 +1,47 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 const interests = ["Food", "Culture", "Eco", "Adventure", "Wellness", "Photography", "History", "Crafts"];
 
 const ProfileSetupPage = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [name, setName] = useState("");
   const [selected, setSelected] = useState<string[]>([]);
+  const [emergency, setEmergency] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const toggle = (i: string) =>
     setSelected((prev) => (prev.includes(i) ? prev.filter((x) => x !== i) : [...prev, i]));
+
+  const handleSubmit = async () => {
+    if (!user) {
+      toast.error("Please sign in first");
+      return navigate("/signup");
+    }
+    setLoading(true);
+    try {
+      const { error } = await supabase
+        .from("profiles")
+        .update({
+          full_name: name,
+          interests: selected,
+          emergency_contact: emergency || null,
+        })
+        .eq("user_id", user.id);
+      if (error) throw error;
+      navigate("/explore");
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background px-6 pt-16 pb-8">
@@ -61,6 +92,8 @@ const ProfileSetupPage = () => {
               Emergency Contact <span className="text-muted-foreground font-normal">(optional)</span>
             </label>
             <input
+              value={emergency}
+              onChange={(e) => setEmergency(e.target.value)}
               placeholder="+91 XXXXX XXXXX"
               className="w-full p-4 rounded-xl border-2 border-border bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
             />
@@ -68,9 +101,11 @@ const ProfileSetupPage = () => {
         </div>
 
         <button
-          onClick={() => navigate("/explore")}
-          className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold mt-8 transition-all hover:opacity-90 active:scale-[0.98]"
+          onClick={handleSubmit}
+          disabled={loading}
+          className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold mt-8 transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2"
         >
+          {loading && <Loader2 className="w-4 h-4 animate-spin" />}
           Complete Setup
         </button>
       </motion.div>
