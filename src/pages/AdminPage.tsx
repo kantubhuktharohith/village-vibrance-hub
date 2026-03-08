@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus, Check, X, Trash2, MapPin, Edit2, Shield, ArrowLeft, UtensilsCrossed, BedDouble, Calculator } from "lucide-react";
+import LocationPicker from "@/components/admin/LocationPicker";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
@@ -165,6 +166,11 @@ const AdminPage = () => {
                     </div>
                     <Textarea placeholder="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
                     <Input placeholder="Image URL" value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
+                    <LocationPicker
+                      lat={parseFloat(form.lat) || 0}
+                      lng={parseFloat(form.lng) || 0}
+                      onLocationChange={(lat, lng) => setForm({ ...form, lat: String(lat), lng: String(lng) })}
+                    />
                     <div className="grid grid-cols-3 gap-3">
                       <Input placeholder="Latitude" type="number" value={form.lat} onChange={(e) => setForm({ ...form, lat: e.target.value })} />
                       <Input placeholder="Longitude" type="number" value={form.lng} onChange={(e) => setForm({ ...form, lng: e.target.value })} />
