@@ -29,6 +29,7 @@ import AdminPage from "./pages/AdminPage";
 import PlaceFoodsPage from "./pages/PlaceFoodsPage";
 import PlaceRoomsPage from "./pages/PlaceRoomsPage";
 import PlaceBudgetPage from "./pages/PlaceBudgetPage";
+import TouristPlaceDetailPage from "./pages/TouristPlaceDetailPage";
 import AppLayout from "./components/AppLayout";
 
 const queryClient = new QueryClient();
