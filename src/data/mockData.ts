@@ -21,6 +21,8 @@ export interface Village {
   fundContribution: number;
   fundProject: string;
   fundProgress: number;
+  lat: number;
+  lng: number;
 }
 
 export interface Experience {
@@ -77,6 +79,8 @@ export const villages: Village[] = [
     verified: true,
     image: village1,
     startingPrice: 3500,
+    lat: 25.1543,
+    lng: 73.5877,
     description: "Nestled in the Aravalli hills, this village offers authentic Rajasthani culture with historic fort walks, traditional cooking, and stargazing in the Thar desert fringe.",
     highlights: ["Heritage Fort Walk", "Desert Stargazing", "Traditional Pottery"],
     experiences: [
@@ -109,6 +113,8 @@ export const villages: Village[] = [
     verified: true,
     image: village2,
     startingPrice: 4500,
+    lat: 11.6854,
+    lng: 76.1320,
     description: "A lush green village in the Western Ghats offering spice garden tours, bamboo rafting, and authentic Kerala cuisine cooked in traditional clay pots.",
     highlights: ["Spice Garden Tour", "Bamboo Rafting", "Ayurveda Wellness"],
     experiences: [
@@ -141,6 +147,8 @@ export const villages: Village[] = [
     verified: true,
     image: village3,
     startingPrice: 5200,
+    lat: 25.5600,
+    lng: 93.8800,
     description: "A remote Naga hamlet surrounded by the legendary Dzükou lily valley. Experience warrior dances, bamboo crafts, and hearty Naga cuisine.",
     highlights: ["Valley Trek", "Warrior Dance", "Bamboo Crafts"],
     experiences: [
@@ -173,6 +181,8 @@ export const villages: Village[] = [
     verified: true,
     image: village1,
     startingPrice: 3200,
+    lat: 15.3350,
+    lng: 76.4600,
     description: "Live among the ancient ruins of the Vijayanagara Empire. Explore boulder-strewn landscapes, coracle rides on the Tungabhadra, and sunset temple visits with local storytellers.",
     highlights: ["Temple Ruins Walk", "Coracle Ride", "Boulder Climbing"],
     experiences: [
@@ -217,6 +227,8 @@ export const villages: Village[] = [
     verified: true,
     image: village3,
     startingPrice: 4500,
+    lat: 32.2460,
+    lng: 78.0190,
     description: "A high-altitude desert village at 12,500 ft with ancient Buddhist monasteries, yak herding trails, and the clearest night skies in India. Disconnect completely.",
     highlights: ["Monastery Visit", "Yak Trail", "Astrophotography"],
     experiences: [
@@ -261,6 +273,8 @@ export const villages: Village[] = [
     verified: true,
     image: village2,
     startingPrice: 2800,
+    lat: 26.9500,
+    lng: 94.1700,
     description: "The world's largest river island on the Brahmaputra. Experience Vaishnavite Sattra culture, mask-making workshops, and boat rides through wetlands teeming with migratory birds.",
     highlights: ["Mask Making", "Sattra Dance", "Wetland Boat Safari"],
     experiences: [
@@ -293,6 +307,8 @@ export const villages: Village[] = [
     verified: true,
     image: village1,
     startingPrice: 4000,
+    lat: 23.7337,
+    lng: 69.8597,
     description: "Camp at the edge of the white salt desert under infinite skies. Experience Kutchi embroidery, camel safaris across the salt flats, and folk music under a full moon.",
     highlights: ["Salt Desert Safari", "Embroidery Workshop", "Full Moon Night"],
     experiences: [
@@ -337,6 +353,8 @@ export const villages: Village[] = [
     verified: true,
     image: village2,
     startingPrice: 3800,
+    lat: 12.3375,
+    lng: 75.8069,
     description: "Wake up to mist-covered coffee plantations in the Scotland of India. Learn bean-to-cup coffee making, trek to Abbey Falls, and taste Kodava warrior cuisine.",
     highlights: ["Coffee Trail", "Waterfall Trek", "Kodava Cuisine"],
     experiences: [
@@ -369,6 +387,8 @@ export const villages: Village[] = [
     verified: true,
     image: village3,
     startingPrice: 4800,
+    lat: 27.5880,
+    lng: 93.8310,
     description: "A hidden UNESCO-nominated valley where the Apatani tribe practices sustainable rice-fish farming unchanged for centuries. No crowds, no commercialization — pure cultural immersion.",
     highlights: ["Rice-Fish Farming", "Tribal Tattoo Culture", "Pine Forest Hike"],
     experiences: [
@@ -401,6 +421,8 @@ export const villages: Village[] = [
     verified: true,
     image: village2,
     startingPrice: 3200,
+    lat: 25.2017,
+    lng: 91.9217,
     description: "Asia's cleanest village, hidden in Meghalaya's cloud forests. Walk across living root bridges grown over 500 years, swim in crystal-clear natural pools, and sleep to the sound of rain.",
     highlights: ["Living Root Bridge", "Natural Rock Pools", "Cleanest Village Tour"],
     experiences: [
@@ -433,6 +455,8 @@ export const villages: Village[] = [
     verified: true,
     image: village1,
     startingPrice: 2800,
+    lat: 9.1725,
+    lng: 79.4193,
     description: "A hauntingly beautiful ghost town at India's southeastern tip, destroyed by a 1964 cyclone. Walk through ruins where the Indian Ocean meets the Bay of Bengal, with Sri Lanka visible on clear days.",
     highlights: ["Ghost Town Walk", "Two-Ocean Confluence", "Fishermen Stories"],
     experiences: [
@@ -465,6 +489,8 @@ export const villages: Village[] = [
     verified: true,
     image: village3,
     startingPrice: 5500,
+    lat: 34.6300,
+    lng: 74.8300,
     description: "One of India's most remote inhabited valleys, cut off by snow for 6 months. Untouched alpine meadows, Dard-Shin tribal culture, and the turquoise Kishanganga river — no tourists, no hotels, just raw beauty.",
     highlights: ["Alpine Meadow Walk", "Dard-Shin Culture", "River Fishing"],
     experiences: [
@@ -497,6 +523,8 @@ export const villages: Village[] = [
     verified: true,
     image: village2,
     startingPrice: 2500,
+    lat: 27.0000,
+    lng: 88.2600,
     description: "A fog-wrapped hamlet hidden in ancient oak and magnolia forests near Darjeeling. No shops, no Wi-Fi — just birdsong, mountain views, and the silence of the eastern Himalayas.",
     highlights: ["Silent Forest Walk", "Rare Bird Spotting", "Himalayan Sunrise"],
     experiences: [
@@ -529,6 +557,8 @@ export const villages: Village[] = [
     verified: true,
     image: village1,
     startingPrice: 6000,
+    lat: 27.1050,
+    lng: 88.0000,
     description: "The highest point in West Bengal where you can see four of the world's five tallest peaks — Everest, Kangchenjunga, Lhotse, and Makalu — from a single viewpoint. A tiny Sherpa settlement serves yak cheese and thukpa.",
     highlights: ["Four-Peak Sunrise", "Sherpa Culture", "High-Altitude Camping"],
     experiences: [
